@@ -30,6 +30,7 @@ app.post('/sum-range', async function(req,res){
 })
 
 app.post('/sum', async function(req,res){
+    console.log(req.body);
     let result = parseInt(0);
     var num1;
     var num2;
