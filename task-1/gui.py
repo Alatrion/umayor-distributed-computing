@@ -1,6 +1,7 @@
 from cProfile import label
 from tkinter import *
 import tkinter
+import coordinator
 
 from setuptools import Command
 
@@ -12,17 +13,19 @@ solution = StringVar()
 
 
 def getContent():
-    min = int(entry1.get())
-    max = int(entry2.get())
+    min_num = int(entry1.get())
+    max_num = int(entry2.get())
     
-    if(min >= max):
+    if(min_num >= max_num):
         print('Error')
         error.set("Ingrese un valor minimo inferior al maximo")
         solution.set("")
         
     else:
-        solution.set(f"Su resultado es:{min + max}")
-        print(min,max)
+        value = coordinator.ejecutar_todos_los_calculos(min_num, max_num)
+        print(value)
+        #solution.set(f"Su resultado es:{min + max}")
+        print(min_num,max_num)
 
 labeTitle = Label(root, width=50 , text="Suma de Intervalo , de forma paralela")
 labeTitle.pack()
