@@ -3,7 +3,6 @@ const bodyParser = require('body-parser');
 const responseTime = require('response-time');
 
 const app = express();
-//app.use(express.json());
 app.use(bodyParser.urlencoded());
 app.use(responseTime());
 const port = process.env.PORT;
@@ -40,7 +39,3 @@ app.post('/sum', async function(req,res){
     await delay(1000)
     res.send(result.toString());
 })
-
-
-
-// https://localhost:4000/sum?nums=1,2,3

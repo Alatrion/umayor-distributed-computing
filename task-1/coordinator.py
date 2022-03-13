@@ -20,7 +20,7 @@ async def get_sum_range_response(session, i, valor_inicial, valor_final, lista, 
 async def get_values(valor_inicial, valor_final, lista, results):
     async with aiohttp.ClientSession() as session:
         tasks = [get_sum_range_response(session, i, valor_inicial, valor_final, lista, results) for i in ran]
-        await asyncio.gather(*tasks)
+        await asyncio.gather(*tasks) # Este asterisco es un puntero
 
 async def get_sum_response(session, i, number_list, new_number_list):
     req = requests.post('http://localhost:{}{}/sum'.format('30',(str(i-1).zfill(2))),
@@ -44,6 +44,7 @@ async def sum_iterations(number_list, current_nodes):
 
 
 def ejecutar_todos_los_calculos(min_num,max_num):
+    start_time = time.time()
     valor_inicial = min_num
     valor_final = max_num
     total_valores = valor_final - valor_inicial
@@ -57,4 +58,4 @@ def ejecutar_todos_los_calculos(min_num,max_num):
         number_list = asyncio.run(sum_iterations(number_list, total_nodos))
     print(number_list)
     print(valor_final)
-    return number_list[0]
+    return number_list[0], (time.time() - start_time)

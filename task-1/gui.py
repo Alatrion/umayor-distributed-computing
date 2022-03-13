@@ -22,9 +22,9 @@ def getContent():
         solution.set("")
         
     else:
-        value = coordinator.ejecutar_todos_los_calculos(min_num, max_num)
+        value, time = coordinator.ejecutar_todos_los_calculos(min_num, max_num)
         print(value)
-        #solution.set(f"Su resultado es:{min + max}")
+        solution.set(f"Su resultado es: {value} en {time} segundos")
         print(min_num,max_num)
 
 labeTitle = Label(root, width=50 , text="Suma de Intervalo , de forma paralela")
