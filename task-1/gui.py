@@ -22,7 +22,7 @@ def getContent():
         solution.set("")
         
     else:
-        req = requests.get('http://localhost:8000/coordinador/1/16').text
+        req = requests.get(f'http://localhost:8000/coordinador/{min_num}/{max_num}').text
         value, time = req.split(',')
         solution.set(f"Su resultado es: {value[1:]} en {time[:-10]} segundos")
         print(min_num,max_num)
