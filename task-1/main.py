@@ -18,11 +18,6 @@ def read_root():
     return {"Hello": "World"}
 
 
-
-
-
-
-
 total_nodos = 4
 ran = list(range(1,total_nodos))
 ran.append(total_nodos)

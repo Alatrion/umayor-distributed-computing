@@ -1,7 +1,7 @@
 from cProfile import label
 from tkinter import *
 import tkinter
-import coordinator
+import requests
 
 from setuptools import Command
 
@@ -22,9 +22,9 @@ def getContent():
         solution.set("")
         
     else:
-        value, time = coordinator.ejecutar_todos_los_calculos(min_num, max_num)
-        print(value)
-        solution.set(f"Su resultado es: {value} en {time} segundos")
+        req = requests.get('http://localhost:8000/coordinador/1/16').text
+        value, time = req.split(',')
+        solution.set(f"Su resultado es: {value[1:]} en {time[:-10]} segundos")
         print(min_num,max_num)
 
 labeTitle = Label(root, width=50 , text="Suma de Intervalo , de forma paralela")
