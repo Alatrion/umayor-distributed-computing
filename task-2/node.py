@@ -1,9 +1,9 @@
 #imports de fastApi
 from typing import Optional
 from fastapi import FastAPI
+from pydantic import BaseModel
 #imports para las funciones del Coordinador 
 import requests
-import json
 import math
 import aiohttp
 import asyncio
@@ -12,10 +12,41 @@ import time
 
 app = FastAPI()
 
+total_nodes = 4 
+indexNode = 1; 
 
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
+class NodeRange(BaseModel):
+    new_min: int; 
+    steps: int;
+    index: int; 
+    original_max_num:int;  
+    
+
+@app.get("/{num_min}/{num_max}")
+async def first_node_summ_range(num_min,num_max):
+    dif = num_max - num_min
+    steps = dif/total_nodes
+    interval = range(num_min,num_max+1); 
+    
+    final_Inteval =0; 
+    for i in interval: 
+        final_Inteval =+ i 
+    
+    # esto lo tenemos que ejecutar de forma paralela con la suma 
+    new_NodeRange = NodeRange(); 
+    new_NodeRange.new_min = steps +1
+    new_NodeRange = steps; 
+    new_NodeRange.index = indexNode +1
+    new_NodeRange.original_max_num = num_max; 
+    
+    sum_All_node = await recursiv_node_summ_range(new_NodeRange); 
+    return final_Inteval + sum_All_node; 
+
+
+@app.get("/second_sum")
+async def recursiv_node_summ_range(req:NodeRange):
+    return 1 
+
 
 
 total_nodos = 4
