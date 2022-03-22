@@ -16,13 +16,13 @@ total_nodes = 4
 indexNode = 0; 
 
 class NodeRange(BaseModel):
-    new_min: int 
-    steps: int
-    index: int 
-    original_max_num:int  
+    new_min: int; 
+    steps: int;
+    index: int; 
+    original_max_num:int;  
     
 
-@app.post("/node1/{num_min}/{num_max}")
+@app.get("/{num_min}/{num_max}")
 async def first_node_summ_range(num_min,num_max):
     indexNode = 1; 
     dif = num_max - num_min
