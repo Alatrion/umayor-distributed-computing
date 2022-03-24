@@ -22,9 +22,9 @@ def getContent():
         solution.set("")
         
     else:
-        req = requests.get(f'http://localhost:8000/coordinador/{min_num}/{max_num}').text
-        value, time = req.split(',')
-        solution.set(f"Su resultado es: {value[1:]} en {time[:-10]} segundos")
+        req = requests.post(f'http://191.113.120.180:8000/node1/{min_num}/{max_num}').text
+        value = req
+        solution.set(f"Su resultado es: {value}")
         print(min_num,max_num)
 
 labeTitle = Label(root, width=50 , text="Suma de Intervalo , de forma paralela")
